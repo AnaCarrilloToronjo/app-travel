@@ -1,0 +1,70 @@
+.city__main-container {
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  padding: 2%;
+  background-color: $primary-color;
+
+  .city__content {
+    overflow: scroll;
+    margin-bottom: 1rem;
+    padding: 10px;
+    background: $secundary-color;
+    border-radius: 0.5em;
+    flex-grow: 1;
+  }
+
+  .city__card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .city_card-content {
+      display: flex;
+      flex-direction: row;
+      cursor: pointer;
+    }
+
+    margin: 0.5rem;
+    padding: 1rem;
+    border-radius: 1em;
+    background-color: white;
+
+    img {
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+    }
+    .city__card-content {
+      display: flex;
+      flex-direction: column;
+      align-self: center;
+      flex-grow: 1;
+      padding: 10px;
+    }
+    .city__card-button {
+      align-self: center;
+      cursor: pointer;
+    }
+  }
+  .city__button-link {
+    justify-content: flex-end;
+    align-self: flex-end;
+  }
+  .city__button {
+    font-size: 3em;
+    height: 1.5em;
+    width: 1.5em;
+    border-radius: 50%;
+    border: none;
+    background-color: $fourth-color;
+    color: white;
+    cursor: pointer;
+
+    &:hover {
+      background: lighten($fourth-color, 3%);
+    }
+  }
+}

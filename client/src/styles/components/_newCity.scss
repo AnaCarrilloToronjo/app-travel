@@ -1,0 +1,46 @@
+.newCity_main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $primary-color;
+  background-color: $primary-color;
+  height: 100vh;
+}
+.newCity_form {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  height: 500px;
+  padding: 50px;
+  background-color: $secundary-color;
+
+  h3 {
+    text-align: center;
+    font-size: 30px;
+    padding: 20px;
+  }
+
+  input {
+    background-color: transparent;
+    border: none;
+    color: $primary-color;
+    border-bottom: 1px solid $primary-color;
+    outline: none;
+    height: 35px;
+  }
+  input::-webkit-input-placeholder {
+    color: $primary-color;
+  }
+  .newCity_container-date {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  button {
+    background-color: $fourth-color;
+    border: none;
+    color: white;
+    margin-top: 10px;
+    padding: 10px;
+  }
+}

@@ -1,0 +1,12 @@
+.navbar__container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  padding: 10px;
+
+  input {
+    outline: none;
+    border-radius: 0.5em;
+    flex-grow: 1;
+  }
+}
