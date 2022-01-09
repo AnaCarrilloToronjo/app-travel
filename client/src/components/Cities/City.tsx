@@ -12,7 +12,7 @@ export const City = () => {
   useEffect(() => {
     // GET request using fetch inside useEffect React hook
     //console.log("PRIMER GET");
-    fetch("http://localhost:9000/stored/places", {
+    fetch("http://localhost:9000/stored", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
