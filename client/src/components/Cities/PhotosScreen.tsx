@@ -1,17 +1,11 @@
 import React, { useEffect, useState } from "react";
-import AddAPhotoOutlinedIcon from "@mui/icons-material/AddAPhotoOutlined";
+import { Navbar } from "../Navbar/Navbar";
 
-interface IPhoto {
-  place_id: string;
-  photos: Buffer;
-}
-
-export const Photos = props => {
-  const { id } = props;
+export const PhotosScreen = () => {
   const [photosIDs, setPhotosIDs] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:9000/photos/cities/${id}`, {
+    fetch(`http://localhost:9000/photos`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -27,10 +21,15 @@ export const Photos = props => {
 
   return (
     <>
+      <Navbar />
       <div className="photos_container">
         {photosIDs.map(photoID => (
           <div key={photoID}>
-            <img src={`http://localhost:9000/photos/${photoID}.png`} />
+            <img
+              src={`http://localhost:9000/photos/${photoID}.png`}
+              height={500}
+              width={500}
+            />
           </div>
         ))}
       </div>

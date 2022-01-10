@@ -7,10 +7,6 @@ interface IPlace {
   _id: string;
   city: string;
 }
-interface IPhoto {
-  place_id: string;
-  photos: Buffer;
-}
 
 export const CityDetails = () => {
   const [place, setPlace] = useState({ city: "" });
@@ -55,19 +51,30 @@ export const CityDetails = () => {
         <hr />
         <div className="details_container">
           <Photos id={id} />
-          <input
-            type="file"
-            //multiple
-            className="form-control"
-            id="photos"
-            name="photos"
-            accept=".jpeg, .png, .jpg"
-            onChange={handleUploadPhoto}
-          />
-          <button onClick={handleSubmitPhoto}>SUBIR</button>
+          <div className="details_upload">
+            <label className="custom-file-upload">
+              <input
+                type="file"
+                //multiple
+                id="photos"
+                name="photos"
+                accept=".jpeg, .png, .jpg"
+                onChange={handleUploadPhoto}
+              />
+              <AddAPhotoOutlinedIcon height="1000px" />
+            </label>
+            <button
+              onClick={handleSubmitPhoto}
+              className="custom-file-upload-button"
+            >
+              Upload photo
+            </button>
+          </div>
         </div>
-        <div>
-          <span>Information</span>
+        <div className="details_information">
+          <label>Additional Information</label>
+          <hr />
+          <textarea />
         </div>
       </div>
     </div>

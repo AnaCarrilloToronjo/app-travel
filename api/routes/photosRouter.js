@@ -6,6 +6,20 @@ const modelPhoto = require("../model/modelPhotos");
 const multer = require("multer");
 const upload = multer();
 
+router.get("/", (req, resp) => {
+  modelPhoto.find({}, function(err, result) {
+    if (err) {
+      resp.send(`error: ${err}`);
+    } else {
+      let photos_id = result.map(function(x) {
+        console.log(x._id);
+        return x._id;
+      });
+      resp.send(photos_id);
+    }
+  });
+});
+
 router.get("/cities/:id", (req, resp) => {
   modelPhoto.find({ place_id: req.params.id }, function(err, result) {
     if (err) {

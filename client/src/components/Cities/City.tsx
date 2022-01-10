@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Moment from "moment";
 import { useNavigate } from "react-router-dom";
-import { Navbar } from "../Navbar/Navbar";
 import Delete from "@mui/icons-material/Delete";
 import Edit from "@mui/icons-material/Edit";
 
@@ -39,7 +38,6 @@ export const City = () => {
 
   return (
     <div className="city__main-container">
-      <Navbar />
       <div className="city__content">
         {place.map(places => (
           <div key={places._id} className="city__card">

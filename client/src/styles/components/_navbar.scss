@@ -1,12 +1,35 @@
 .navbar__container {
-  width: 100%;
-  height: auto;
+  background-color: $secundary-color;
+  position: sticky;
+  top: 0;
   display: flex;
-  padding: 10px;
+  justify-content: space-between;
+  padding: 1%;
+  ul {
+    padding: 0px;
+  }
 
-  input {
-    outline: none;
-    border-radius: 0.5em;
-    flex-grow: 1;
+  li {
+    margin: 15%;
+    list-style: none;
+    display: inline;
+
+    a:-webkit-any-link {
+      text-decoration: none;
+      color: inherit;
+    }
+    &:hover {
+      color: lighten($fourth-color, 3%);
+    }
+  }
+  div {
+    display: flex;
+    input {
+      outline: none;
+      padding: 3%;
+      border-radius: 0.3em;
+      justify-content: flex-end;
+      align-self: flex-end;
+    }
   }
 }
