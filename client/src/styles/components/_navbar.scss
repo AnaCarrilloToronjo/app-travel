@@ -1,5 +1,6 @@
 .navbar__container {
-  background-color: $secundary-color;
+  background-color: $primary-color;
+  border-bottom: 1px solid white;
   position: sticky;
   top: 0;
   display: flex;
@@ -13,6 +14,7 @@
     margin: 15%;
     list-style: none;
     display: inline;
+    color: white;
 
     a:-webkit-any-link {
       text-decoration: none;

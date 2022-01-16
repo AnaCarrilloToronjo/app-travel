@@ -1,6 +1,18 @@
 import React from "react";
 import { useForm } from "../../hooks/useForm";
 import { useNavigate } from "react-router-dom";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import { alpha, styled } from "@mui/material/styles";
+
+const CssTextField = styled(TextField)({
+  "& label.Mui-focused": {
+    color: "indianred"
+  },
+  "& .MuiInput-underline:after": {
+    borderBottomColor: "indianred"
+  }
+});
 
 export const NewCity = () => {
   const [formValues, handleInputChange] = useForm({
@@ -8,6 +20,7 @@ export const NewCity = () => {
     fromDate: "",
     toDate: ""
   });
+
   const navigate = useNavigate();
 
   const handleSubmit = e => {
@@ -28,24 +41,39 @@ export const NewCity = () => {
   return (
     <div className="newCity_main">
       <form className="newCity_form" onSubmit={handleSubmit}>
-        <h3>New travel</h3>
-        <input
-          type="text"
-          name="city"
-          placeholder="Where did you go?"
-          autoComplete="off"
-          onChange={handleInputChange}
-        />
-        <div className="newCity_container-date">
-          <input
-            type="date"
-            name="fromDate"
-            placeholder="Where did you go?"
+        <div className="newCity_content">
+          <h3>New travel</h3>
+          <CssTextField
+            type="text"
+            name="city"
+            id="input"
+            label="Where did you go?"
+            variant="standard"
+            autoComplete="off"
             onChange={handleInputChange}
           />
-          <input type="date" name="toDate" onChange={handleInputChange} />
+          <div className="newCity_container-date">
+            <CssTextField
+              type="date"
+              name="fromDate"
+              id="date"
+              variant="standard"
+              label="Start date"
+              onChange={handleInputChange}
+            />
+            <CssTextField
+              type="date"
+              name="toDate"
+              id="date"
+              variant="standard"
+              label="End date"
+              onChange={handleInputChange}
+            />
+          </div>
         </div>
-        <button type="submit">Submit</button>
+        <Button type="submit" id="button">
+          Submit
+        </Button>
       </form>
     </div>
   );

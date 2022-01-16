@@ -3,6 +3,11 @@ import Moment from "moment";
 import { useNavigate } from "react-router-dom";
 import Delete from "@mui/icons-material/Delete";
 import Edit from "@mui/icons-material/Edit";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import IconButton from "@mui/material/IconButton";
+import Avatar from "@mui/material/Avatar";
+import PhotoIcon from "@mui/icons-material/Photo";
 
 export const City = () => {
   const navigate = useNavigate();
@@ -37,39 +42,63 @@ export const City = () => {
   };
 
   return (
-    <div className="city__main-container">
-      <div className="city__content">
+    <div className="city_main-container">
+      <div className="city_content">
         {place.map(places => (
-          <div key={places._id} className="city__card">
-            <div
-              className="city_card-content"
-              onClick={() => navigate(`/${places._id}`)}
-            >
-              <img src="https://i.pinimg.com/originals/92/6b/fc/926bfc5029438b67a490bbe8c863af3e.jpg" />
+          <ListItem
+            key={places._id}
+            className="city__card"
+            secondaryAction={
+              <div>
+                <IconButton>
+                  <Delete onClick={() => handleDelete(places._id)} />
+                </IconButton>
+                <IconButton>
+                  <Edit />
+                </IconButton>
+              </div>
+            }
+          >
+            <ListItemButton onClick={() => navigate(`/${places._id}`)}>
+              <Avatar
+                className="city_photo"
+                src={`http://localhost:9000/photos/${places.photo}.png`}
+              >
+                <PhotoIcon className="city_photo-icon" />
+              </Avatar>
               <div className="city__card-content">
                 <div>{places.city}</div>
-                <div>
-                  {Moment(`${places.fromDate}`).format("DD-MM-YYYY")} to{" "}
-                  {Moment(`${places.toDate}`).format("DD-MM-YYYY")}
+                <div className="city_card-date">
+                  {places.fromDate ? (
+                    <div>
+                      {Moment(`${places.fromDate}`).format("DD-MM-YYYY")}
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                  {places.toDate ? (
+                    <div>
+                      <label> to </label>
+                      <span>
+                        {Moment(`${places.toDate}`).format("DD-MM-YYYY")}
+                      </span>
+                    </div>
+                  ) : (
+                    ""
+                  )}
                 </div>
               </div>
-            </div>
-            <div className="city__card-button">
-              <Delete onClick={() => handleDelete(places._id)} />
-              <Edit>EDIT</Edit>
-            </div>
-          </div>
+            </ListItemButton>
+          </ListItem>
         ))}
       </div>
-      <div className="city__button-link">
-        <button
-          type="submit"
-          className="city__button"
-          onClick={() => navigate("/newCity")}
-        >
-          +
-        </button>
-      </div>
+      <button
+        type="button"
+        className="city__button"
+        onClick={() => navigate("/newCity")}
+      >
+        +
+      </button>
     </div>
   );
 };

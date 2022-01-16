@@ -6,7 +6,7 @@ const PlaceSchema = new Schema({
   info: { type: String },
   fromDate: { type: Date },
   toDate: { type: Date },
-  photo: { type: Buffer }
+  photo: { type: String }
 });
 
 const Place = mongoose.model("Place", PlaceSchema);

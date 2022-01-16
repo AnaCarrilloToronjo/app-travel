@@ -27,4 +27,11 @@ router.delete("/:id", async (req, res) => {
   await Place.findByIdAndDelete(req.params.id);
 });
 
+router.put("/:id", async (req, res) => {
+  const { city, info, fromDate, toDate, photo } = req.body;
+  const updatePlace = { city, info, fromDate, toDate, photo };
+  await Place.findByIdAndUpdate(req.params.id, updatePlace);
+  res.json("everything was OK");
+});
+
 module.exports = router;

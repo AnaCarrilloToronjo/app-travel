@@ -2,16 +2,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: $primary-color;
-  background-color: $primary-color;
   height: 100vh;
+  background-image: $background-image;
 }
+
 .newCity_form {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   width: 500px;
   height: 500px;
   padding: 50px;
+  border-radius: 2.5%;
   background-color: $secundary-color;
 
   h3 {
@@ -19,28 +21,33 @@
     font-size: 30px;
     padding: 20px;
   }
-
-  input {
-    background-color: transparent;
-    border: none;
-    color: $primary-color;
-    border-bottom: 1px solid $primary-color;
-    outline: none;
-    height: 35px;
-  }
-  input::-webkit-input-placeholder {
-    color: $primary-color;
-  }
-  .newCity_container-date {
+  .newCity_content {
     display: flex;
-    justify-content: space-around;
-  }
+    flex-direction: column;
+    .newCity_container-date {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 5%;
 
-  button {
-    background-color: $fourth-color;
-    border: none;
-    color: white;
-    margin-top: 10px;
-    padding: 10px;
+      #input {
+        color: "gray";
+        //borderBottomColor: "indianred"
+      }
+
+      #date {
+        color: transparent;
+
+        &:focus {
+          color: black;
+        }
+      }
+    }
+  }
+  #button {
+    color: indianred;
+
+    &:hover {
+      background: lighten(indianred, 30%);
+    }
   }
 }

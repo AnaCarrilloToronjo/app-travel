@@ -1,63 +1,52 @@
 .city_screen {
-}
-
-.city__main-container {
   display: flex;
-  box-sizing: border-box;
   flex-direction: column;
   height: 100vh;
-  //width: 100vw;
+  background-image: $background-image;
+}
 
-  padding: 2%;
-  background-color: $primary-color;
+.city_main-container {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  flex-grow: 1;
+  padding: 20px;
+  width: 1100px;
+  overflow: scroll;
 
-  .city__content {
-    overflow: scroll;
+  .city_content {
     margin-bottom: 1rem;
     padding: 10px;
     background: $secundary-color;
     border-radius: 0.5em;
     flex-grow: 1;
+    overflow: scroll;
   }
 
   .city__card {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-
-    .city_card-content {
-      display: flex;
-      flex-direction: row;
-      cursor: pointer;
-    }
-
-    margin: 0.5rem;
-    padding: 1rem;
+    padding: 10px;
+    margin-top: 10px;
     border-radius: 1em;
     background-color: white;
 
-    img {
-      border-radius: 50%;
-      width: 100px;
-      height: 100px;
+    .city_photo {
+      width: 80px;
+      height: 80px;
+
+      .city_photo-icon {
+        width: 150px;
+      }
     }
     .city__card-content {
-      display: flex;
-      flex-direction: column;
-      align-self: center;
-      flex-grow: 1;
       padding: 10px;
+      .city_card-date {
+        display: flex;
+      }
     }
-    .city__card-button {
-      align-self: center;
-      cursor: pointer;
-    }
-  }
-  .city__button-link {
-    justify-content: flex-end;
-    align-self: flex-end;
   }
   .city__button {
+    justify-content: flex-end;
+    align-self: flex-end;
     font-size: 3em;
     height: 1.5em;
     width: 1.5em;

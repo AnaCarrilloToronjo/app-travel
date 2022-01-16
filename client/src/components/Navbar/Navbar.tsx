@@ -6,7 +6,7 @@ const handleSearch = e => {
   console.log(e.target.value);
 };
 
-export const Navbar = props => {
+export const Navbar = () => {
   return (
     <div className="navbar__container">
       <ul>
