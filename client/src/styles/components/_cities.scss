@@ -1,8 +1,8 @@
 .city_screen {
+  background: $secundary-color;
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background-image: $background-image;
 }
 
 .city_main-container {
@@ -10,6 +10,7 @@
   flex-direction: column;
   align-self: center;
   flex-grow: 1;
+
   padding: 20px;
   width: 1100px;
   overflow: scroll;
@@ -17,16 +18,13 @@
   .city_content {
     margin-bottom: 1rem;
     padding: 10px;
-    background: $secundary-color;
-    border-radius: 0.5em;
     flex-grow: 1;
     overflow: scroll;
   }
 
   .city__card {
     padding: 10px;
-    margin-top: 10px;
-    border-radius: 1em;
+    border: 1px solid #511845;
     background-color: white;
 
     .city_photo {
@@ -52,12 +50,12 @@
     width: 1.5em;
     border-radius: 50%;
     border: none;
-    background-color: $fourth-color;
+    background-color: $button-color;
     color: white;
     cursor: pointer;
 
     &:hover {
-      background: lighten($fourth-color, 3%);
+      background: lighten($button-color, 3%);
     }
   }
 }

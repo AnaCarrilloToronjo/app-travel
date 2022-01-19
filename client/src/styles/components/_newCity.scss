@@ -31,7 +31,6 @@
 
       #input {
         color: "gray";
-        //borderBottomColor: "indianred"
       }
 
       #date {
@@ -44,10 +43,10 @@
     }
   }
   #button {
-    color: indianred;
+    color: $button-color;
 
     &:hover {
-      background: lighten(indianred, 30%);
+      background: lighten($button-color, 30%);
     }
   }
 }

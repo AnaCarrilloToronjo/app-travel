@@ -1,17 +1,17 @@
 .navbar__container {
-  background-color: $primary-color;
+  background-image: $background-image;
   border-bottom: 1px solid white;
   position: sticky;
   top: 0;
   display: flex;
   justify-content: space-between;
-  padding: 1%;
+  padding: 20px;
   ul {
     padding: 0px;
   }
 
   li {
-    margin: 15%;
+    margin: 10px;
     list-style: none;
     display: inline;
     color: white;
@@ -21,7 +21,7 @@
       color: inherit;
     }
     &:hover {
-      color: lighten($fourth-color, 3%);
+      color: lighten(white, 3%);
     }
   }
   div {

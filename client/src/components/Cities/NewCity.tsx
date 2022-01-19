@@ -3,14 +3,14 @@ import { useForm } from "../../hooks/useForm";
 import { useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { alpha, styled } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
-    color: "indianred"
+    color: "black"
   },
   "& .MuiInput-underline:after": {
-    borderBottomColor: "indianred"
+    borderBottomColor: "black"
   }
 });
 

@@ -12,10 +12,9 @@ import PhotoIcon from "@mui/icons-material/Photo";
 export const City = () => {
   const navigate = useNavigate();
   const [place, setPlace] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // GET request using fetch inside useEffect React hook
-    //console.log("PRIMER GET");
     fetch("http://localhost:9000/stored", {
       method: "GET",
       headers: {
@@ -28,8 +27,9 @@ export const City = () => {
         setPlace(data);
       })
       .catch(error => console.error("Error fetching data: ", error));
-    // empty dependency array means this effect will only run once (like componentDidMount in classes)
-  }, [setPlace, place]);
+
+    setIsLoading(false);
+  }, [isLoading]);
 
   const handleDelete = id => {
     fetch(`http://localhost:9000/stored/${id}`, {
@@ -39,6 +39,7 @@ export const City = () => {
         Accept: "application/json"
       }
     });
+    setIsLoading(true);
   };
 
   return (

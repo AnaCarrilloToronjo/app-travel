@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { CityDetails } from "../components/Cities/CityDetails";
 import { NewCity } from "../components/Cities/NewCity";
 import { CityScreen } from "../components/Cities/CityScreen";
 import { PhotosScreen } from "../components/Cities/PhotosScreen";

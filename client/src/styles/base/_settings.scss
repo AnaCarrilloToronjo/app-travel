@@ -2,29 +2,14 @@
 
 $background-image: linear-gradient(
   to right top,
-  #d16ba5,
-  #c777b9,
-  #ba83ca,
-  #aa8fd8,
-  #9a9ae1,
-  #8aa7ec,
-  #79b3f4,
-  #69bff8,
-  #52cffe,
-  #41dfff,
-  #46eefa,
-  #5ffbf1
+  #511845,
+  #900c3f,
+  #c70039,
+  #ff5733
 );
-/* linear-gradient(
-  to right top,
-  #c25e85,
-  #e5717c,
-  #fe8b70,
-  #ffad65,
-  #ffd262,
-  #f9f871
-);*/
-$primary-color: #ba83ca;
+$primary-color: #511845;
 $secundary-color: #f5f3f4;
 $third-color: #f28f3b;
-$fourth-color: #d16ba5;
+$fourth-color: #900c3f;
+
+$button-color: #ff5733;
