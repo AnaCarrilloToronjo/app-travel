@@ -6,7 +6,6 @@ import ImageIcon from "@mui/icons-material/Image";
 
 interface IPhoto {
   photoId: string;
-  principal: boolean;
 }
 
 export const Photos = props => {
@@ -16,7 +15,6 @@ export const Photos = props => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    console.log("petición");
     fetch(`http://localhost:9000/photos/cities/${id}`, {
       method: "GET",
       headers: {
@@ -27,7 +25,7 @@ export const Photos = props => {
       .then(res => res.json())
       .then(data => {
         let photos = data.map(photoID => {
-          return { photoId: photoID, principal: false };
+          return { photoId: photoID };
         });
         setPhotosIDs(photos);
       })
@@ -62,7 +60,6 @@ export const Photos = props => {
       .then(res => res.json())
       .then(data => console.log(data));
 
-    setShowMenu(false);
     setIsLoading(true);
   };
 
