@@ -32,10 +32,14 @@
       #input {
         color: "gray";
       }
+      input[type="date"]:in-range::-webkit-datetime-edit-year-field,
+      input[type="date"]:in-range::-webkit-datetime-edit-month-field,
+      input[type="date"]:in-range::-webkit-datetime-edit-day-field,
+      input[type="date"]:in-range::-webkit-datetime-edit-text {
+        color: transparent;
+      }
 
       #date {
-        color: transparent;
-
         &:focus {
           color: black;
         }
@@ -43,10 +47,7 @@
     }
   }
   #button {
-    color: $button-color;
-
-    &:hover {
-      background: lighten($button-color, 30%);
-    }
+    color: white;
+    background-color: $button-color;
   }
 }

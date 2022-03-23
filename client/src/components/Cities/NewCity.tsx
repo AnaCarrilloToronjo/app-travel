@@ -1,42 +1,51 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "../../hooks/useForm";
 import { useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
+import { Context } from "../../context/context.provider";
 
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
-    color: "black"
+    color: "#c70039",
   },
   "& .MuiInput-underline:after": {
-    borderBottomColor: "black"
-  }
+    borderBottomColor: "#c70039",
+  },
+  "input:-webkit-autofill": {
+    "-webkit-box-shadow": "0 0 0 100px #f5f3f4 inset",
+  },
 });
 
 export const NewCity = () => {
+  const { user } = useContext(Context);
+
   const [formValues, handleInputChange] = useForm({
     city: "",
     fromDate: "",
-    toDate: ""
+    toDate: "",
+    user: user,
   });
 
   const navigate = useNavigate();
 
-  const handleSubmit = e => {
-    fetch("http://localhost:9000/stored/newPlace", {
-      method: "POST",
-      body: JSON.stringify(formValues),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-      .then(res => res.json())
-      .then(data => console.log(data));
+  const handleSubmit = (e) => {
+    if (formValues.city) {
+      fetch("http://localhost:9000/stored", {
+        method: "POST",
+        body: JSON.stringify(formValues),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => console.log(data));
 
-    e.preventDefault();
+      navigate("/");
+    }
     e.target.reset();
-    navigate("/");
+    e.preventDefault();
   };
   return (
     <div className="newCity_main">
@@ -49,7 +58,6 @@ export const NewCity = () => {
             id="input"
             label="Where did you go?"
             variant="standard"
-            autoComplete="off"
             onChange={handleInputChange}
           />
           <div className="newCity_container-date">

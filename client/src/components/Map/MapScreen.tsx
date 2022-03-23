@@ -4,9 +4,8 @@ import { Geocoder } from "./Geocoder";
 
 const position: [number, number] = [40.3, -4];
 
-export const MapScreen = props => {
+export const MapScreen = (props) => {
   const { cityName } = props;
-  console.log(cityName);
   return (
     <MapContainer
       style={{ width: "100vw", height: "auto" }}

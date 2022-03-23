@@ -4,9 +4,9 @@ import { CityDetails } from "./CityDetails";
 
 export const DetailsScreen = () => {
   return (
-    <div className="">
+    <>
       <NavbarDetails />
       <CityDetails />
-    </div>
+    </>
   );
 };

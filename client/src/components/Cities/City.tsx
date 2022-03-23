@@ -21,29 +21,29 @@ export const City = () => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json"
-      }
+        Accept: "application/json",
+      },
     })
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         setPlace(data);
       })
-      .catch(error => console.error("Error fetching data: ", error));
+      .catch((error) => console.error("Error fetching data: ", error));
 
     setIsLoading(false);
   }, [isLoading]);
 
-  const handleDelete = id => {
+  const handleDelete = (id) => {
     fetch(`http://localhost:9000/stored/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json"
-      }
+        Accept: "application/json",
+      },
     });
     setIsLoading(true);
   };
-  const handleClick = cityName => {
+  const handleClick = (cityName) => {
     setCityName(cityName);
   };
 
@@ -51,7 +51,7 @@ export const City = () => {
     <div className="city_map">
       <div className="city_main-container">
         <div className="city_content">
-          {place.map(places => (
+          {place.map((places) => (
             <ListItem
               key={places._id}
               className="city__card"
@@ -76,22 +76,16 @@ export const City = () => {
                 <div className="city__card-content">
                   <div>{places.city}</div>
                   <div className="city_card-date">
-                    {places.fromDate ? (
-                      <div>
-                        {Moment(`${places.fromDate}`).format("DD-MM-YYYY")}
-                      </div>
-                    ) : (
-                      ""
+                    {places.fromDate && (
+                      <span>
+                        {Moment(`${places.fromDate}`).format("Do MMMM YY")}
+                      </span>
                     )}
-                    {places.toDate ? (
-                      <div>
-                        <label> to </label>
-                        <span>
-                          {Moment(`${places.toDate}`).format("DD-MM-YYYY")}
-                        </span>
-                      </div>
-                    ) : (
-                      ""
+                    {places.toDate && (
+                      <span>
+                        &nbsp;-&nbsp;
+                        {Moment(`${places.toDate}`).format("Do MMMM YY")}
+                      </span>
                     )}
                   </div>
                 </div>

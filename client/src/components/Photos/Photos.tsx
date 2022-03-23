@@ -3,12 +3,13 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ImageIcon from "@mui/icons-material/Image";
+import Tooltip from "@mui/material/Tooltip";
 
 interface IPhoto {
   photoId: string;
 }
 
-export const Photos = props => {
+export const Photos = (props) => {
   const { id } = props;
   const [photosIDs, setPhotosIDs] = useState<IPhoto[]>([]);
   const [showMenu, setShowMenu] = useState(false);
@@ -19,57 +20,57 @@ export const Photos = props => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json"
-      }
+        Accept: "application/json",
+      },
     })
-      .then(res => res.json())
-      .then(data => {
-        let photos = data.map(photoID => {
+      .then((res) => res.json())
+      .then((data) => {
+        let photos = data.map((photoID) => {
           return { photoId: photoID };
         });
         setPhotosIDs(photos);
       })
-      .catch(error => console.error("Error fetching data: ", error));
+      .catch((error) => console.error("Error fetching data: ", error));
 
     setIsLoading(false);
   }, [isLoading]);
 
-  const handleChangePhoto = PhotoId => {
+  const handleChangePhoto = (PhotoId) => {
     fetch(`http://localhost:9000/stored/${id}`, {
       method: "PUT",
       body: JSON.stringify({ photo: PhotoId }),
       headers: {
-        "Content-Type": "application/json"
-      }
+        "Content-Type": "application/json",
+      },
     })
-      .then(res => res.json())
-      .then(data => console.log(data));
+      .then((res) => res.json())
+      .then((data) => console.log(data));
   };
 
   const handleClick = () => {
     setShowMenu(!showMenu);
   };
 
-  const handleUploadPhoto = e => {
+  const handleUploadPhoto = (e) => {
     let formData = new FormData();
     formData.append("photo", e.target.files[0]);
     fetch(`http://localhost:9000/photos/${id}`, {
       method: "POST",
-      body: formData
+      body: formData,
     })
-      .then(res => res.json())
-      .then(data => console.log(data));
+      .then((res) => res.json())
+      .then((data) => console.log(data));
 
     setIsLoading(true);
   };
 
-  const handleDeletePhoto = id => {
+  const handleDeletePhoto = (id) => {
     fetch(`http://localhost:9000/photos/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json"
-      }
+        Accept: "application/json",
+      },
     });
 
     setIsLoading(true);
@@ -85,20 +86,24 @@ export const Photos = props => {
         />
       </div>
       <div className="photos_container">
-        {photosIDs.map(photoID => (
+        {photosIDs.map((photoID) => (
           <div key={photoID.photoId} id="photo-div">
             <img src={`http://localhost:9000/photos/${photoID.photoId}.png`} />
 
             {showMenu && (
               <div>
-                <DeleteIcon
-                  className="photo-icon"
-                  onClick={() => handleDeletePhoto(photoID.photoId)}
-                />
-                <ImageIcon
-                  className="photo-icon"
-                  onClick={() => handleChangePhoto(photoID.photoId)}
-                />
+                <Tooltip title="Delete photo">
+                  <DeleteIcon
+                    className="photo-icon"
+                    onClick={() => handleDeletePhoto(photoID.photoId)}
+                  />
+                </Tooltip>
+                <Tooltip title="Select principal photo">
+                  <ImageIcon
+                    className="photo-icon"
+                    onClick={() => handleChangePhoto(photoID.photoId)}
+                  />
+                </Tooltip>
               </div>
             )}
           </div>

@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 export const NavbarDetails = () => {
   return (
-    <div className="navbar__container">
+    <div className="navbar_container">
       <ul>
         <li>
           <Link to="/">Home</Link>

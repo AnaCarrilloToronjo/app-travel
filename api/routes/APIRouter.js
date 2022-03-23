@@ -17,7 +17,7 @@ router.get("/:id", async (req, res) => {
   res.json(place);
 });
 
-router.post("/newPlace", async (req, res) => {
+router.post("/", async (req, res) => {
   const place = new Place(req.body);
   await place.save();
   res.json("everything was OK");

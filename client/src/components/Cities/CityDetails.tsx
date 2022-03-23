@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Photos } from "./Photos";
-import AddAPhotoOutlinedIcon from "@mui/icons-material/AddAPhotoOutlined";
+import { Photos } from "../Photos/Photos";
 
 interface IPlace {
   _id: string;
@@ -16,14 +15,14 @@ export const CityDetails = () => {
     fetch(`http://localhost:9000/stored/${id}`, {
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json"
-      }
+        Accept: "application/json",
+      },
     })
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         setPlace(data);
       })
-      .catch(error => console.error("Error fetching data: ", error));
+      .catch((error) => console.error("Error fetching data: ", error));
   }, [setPlace]);
 
   return (
