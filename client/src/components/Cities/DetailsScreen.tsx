@@ -1,11 +1,11 @@
 import React from "react";
-import { NavbarDetails } from "../Navbar/NavbarDetails";
+import { Navbar } from "../Navbar/Navbar";
 import { CityDetails } from "./CityDetails";
 
 export const DetailsScreen = () => {
   return (
     <>
-      <NavbarDetails />
+      <Navbar />
       <CityDetails />
     </>
   );

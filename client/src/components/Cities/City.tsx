@@ -9,6 +9,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import IconButton from "@mui/material/IconButton";
 import Avatar from "@mui/material/Avatar";
 import PhotoIcon from "@mui/icons-material/Photo";
+import { getPlaces, deletePlace } from "../../services/places";
 
 export const City = () => {
   const navigate = useNavigate();
@@ -17,14 +18,7 @@ export const City = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:9000/stored", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    })
-      .then((res) => res.json())
+    getPlaces()
       .then((data) => {
         setPlace(data);
       })
@@ -34,13 +28,7 @@ export const City = () => {
   }, [isLoading]);
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:9000/stored/${id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    });
+    deletePlace(id);
     setIsLoading(true);
   };
   const handleClick = (cityName) => {

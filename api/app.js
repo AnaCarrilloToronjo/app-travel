@@ -1,4 +1,4 @@
-//import { jwtMiddleware } from "./pods/security/security.middlewares";
+//import { jwtMiddleware } from "./security/security.middlewares";
 
 var createError = require("http-errors");
 var express = require("express");
@@ -29,17 +29,20 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
-//app.use("/users", jwtMiddleware, usersRouter);
+
+const jwtMiddleware = function(req, res, next){
+  cookie = res.cookie('title', 'GeeksforGeeksaa');
+  console.log("hola estamos en el middleware")
+  res.send("Cookie Set");
+}
+
+//app.use("/", jwtMiddleware);
+ 
 app.use("/users", usersRouter);
 
 app.use("/stored", APIRouter);
 
 app.use("/photos", photosRouter);
-
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-  next(createError(404));
-});
 
 // error handler
 app.use(function (err, req, res, next) {

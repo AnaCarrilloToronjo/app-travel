@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Photos } from "../Photos/Photos";
+import { getPlaceById } from "../../services/places";
 
 interface IPlace {
   _id: string;
@@ -12,13 +13,7 @@ export const CityDetails = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(`http://localhost:9000/stored/${id}`, {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    })
-      .then((res) => res.json())
+    getPlaceById(id)
       .then((data) => {
         setPlace(data);
       })

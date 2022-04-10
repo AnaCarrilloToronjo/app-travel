@@ -5,6 +5,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { setUser } from "../../services/users";
 
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
@@ -29,15 +30,7 @@ export const Register = () => {
 
   const handleSubmit = (e) => {
     if (formValues.password === formValues.confirmPassword) {
-      fetch("http://localhost:9000/users", {
-        method: "POST",
-        body: JSON.stringify(formValues),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((res) => res.json())
-        .then((data) => console.log(data));
+      setUser(formValues).then((data) => console.log(data));
 
       e.preventDefault();
       e.target.reset();

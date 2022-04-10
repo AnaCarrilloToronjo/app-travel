@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Context } from "../../context/context.provider";
+import { getUser } from "../../services/users";
 
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
@@ -33,7 +34,7 @@ export const Login = () => {
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
-    fetch(`http://localhost:9000/users/auth`, {
+    /*fetch(`http://localhost/api/users/auth`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -45,6 +46,13 @@ export const Login = () => {
       }),
     })
       .then((res) => res.json())
+      .then((data) => {
+        setUser(data.user);
+        navigate("/");
+      })
+      .catch((error) => console.error("Error fetching data: ", error));*/
+
+    getUser(formValues)
       .then((data) => {
         setUser(data.user);
         navigate("/");

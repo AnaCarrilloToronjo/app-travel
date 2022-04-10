@@ -5,6 +5,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
 import { Context } from "../../context/context.provider";
+import { setPlace } from "../../services/places";
 
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
@@ -32,15 +33,7 @@ export const NewCity = () => {
 
   const handleSubmit = (e) => {
     if (formValues.city) {
-      fetch("http://localhost:9000/stored", {
-        method: "POST",
-        body: JSON.stringify(formValues),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((res) => res.json())
-        .then((data) => console.log(data));
+      setPlace(formValues).then((data) => console.log(data));
 
       navigate("/");
     }

@@ -4,6 +4,7 @@ var router = express.Router();
 const User = require("../model/modelUsers");
 
 router.post('/auth', async(req, res)=> {
+
   const user = await User.findOne({ username: req.body.username, password:  req.body.password})
   if(user){
     res.json({user: user.username});
@@ -13,6 +14,7 @@ router.post('/auth', async(req, res)=> {
 });
 
 router.post("/", async (req, res) => {
+
   const userAuth = await User.findOne({ username: req.body.username})
 
   if(!userAuth) {

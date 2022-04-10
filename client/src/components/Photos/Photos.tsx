@@ -4,6 +4,12 @@ import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ImageIcon from "@mui/icons-material/Image";
 import Tooltip from "@mui/material/Tooltip";
+import {
+  getPhotoById,
+  putPhoto,
+  uploadPhoto,
+  deletePhoto,
+} from "../../services/photos";
 
 interface IPhoto {
   photoId: string;
@@ -16,14 +22,7 @@ export const Photos = (props) => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:9000/photos/cities/${id}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    })
-      .then((res) => res.json())
+    getPhotoById(id)
       .then((data) => {
         let photos = data.map((photoID) => {
           return { photoId: photoID };
@@ -36,15 +35,7 @@ export const Photos = (props) => {
   }, [isLoading]);
 
   const handleChangePhoto = (PhotoId) => {
-    fetch(`http://localhost:9000/stored/${id}`, {
-      method: "PUT",
-      body: JSON.stringify({ photo: PhotoId }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data));
+    putPhoto(id, PhotoId).then((data) => console.log(data));
   };
 
   const handleClick = () => {
@@ -54,24 +45,13 @@ export const Photos = (props) => {
   const handleUploadPhoto = (e) => {
     let formData = new FormData();
     formData.append("photo", e.target.files[0]);
-    fetch(`http://localhost:9000/photos/${id}`, {
-      method: "POST",
-      body: formData,
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data));
+    uploadPhoto(id, formData).then((data) => console.log(data));
 
     setIsLoading(true);
   };
 
   const handleDeletePhoto = (id) => {
-    fetch(`http://localhost:9000/photos/${id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    });
+    deletePhoto(id);
 
     setIsLoading(true);
   };
