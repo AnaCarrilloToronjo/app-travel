@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Navbar } from "../Navbar/Navbar";
 import { getPhotos } from "../../services/photos";
+import { PhotoEntity } from "../../model";
 
 export const PhotosScreen = () => {
-  const [photosIDs, setPhotosIDs] = useState([]);
+  const [photosIDs, setPhotosIDs] = useState<PhotoEntity[]>([]);
 
   useEffect(() => {
     getPhotos()
@@ -18,7 +19,7 @@ export const PhotosScreen = () => {
       <Navbar />
       <div className="photos_container">
         {photosIDs.map((photoID) => (
-          <div key={photoID}>
+          <div>
             <img
               src={`http://localhost:9000/photos/${photoID}.png`}
               height={500}

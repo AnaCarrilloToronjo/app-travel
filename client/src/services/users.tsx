@@ -1,6 +1,8 @@
+import { UserEntity } from "../model";
+
 const url = "http://localhost/api/users";
 
-export const getUser = (formValues) => {
+export const getUser = (formValues): Promise<UserEntity> => {
   return fetch(`${url}/auth`, {
     method: "POST",
     headers: {
@@ -14,7 +16,7 @@ export const getUser = (formValues) => {
   }).then((res) => res.json());
 };
 
-export const setUser = (formValues) => {
+export const setUser = (formValues): Promise<UserEntity> => {
   return fetch(url, {
     method: "POST",
     body: JSON.stringify(formValues),

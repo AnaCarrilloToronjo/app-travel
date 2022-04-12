@@ -1,6 +1,8 @@
+import { PlacesEntity } from "../model";
+
 const url = "http://localhost/api/stored";
 
-export const getPlaces = () => {
+export const getPlaces = (): Promise<PlacesEntity[]> => {
   return fetch(url, {
     method: "GET",
     headers: {
@@ -10,7 +12,7 @@ export const getPlaces = () => {
   }).then((res) => res.json());
 };
 
-export const getPlaceById = (id) => {
+export const getPlaceById = (id: string): Promise<PlacesEntity> => {
   return fetch(`${url}/${id}`, {
     headers: {
       "Content-Type": "application/json",
@@ -19,7 +21,7 @@ export const getPlaceById = (id) => {
   }).then((res) => res.json());
 };
 
-export const setPlace = (formValues) => {
+export const setPlace = (formValues: PlacesEntity[]): Promise<PlacesEntity> => {
   return fetch(url, {
     method: "POST",
     body: JSON.stringify(formValues),
@@ -29,7 +31,7 @@ export const setPlace = (formValues) => {
   }).then((res) => res.json());
 };
 
-export const deletePlace = (id) => {
+export const deletePlace = (id: string) => {
   return fetch(`${url}/${id}`, {
     method: "DELETE",
     headers: {

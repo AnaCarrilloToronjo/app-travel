@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
 import { Context } from "../../context/context.provider";
 import { setPlace } from "../../services/places";
+import { PlacesEntity } from "../../model";
 
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {

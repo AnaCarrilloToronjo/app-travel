@@ -1,6 +1,8 @@
+import { PhotosEntity, PhotoEntity } from "../model";
+
 const url = "http://localhost/api/photos";
 
-export const getPhotoById = (id) => {
+export const getPhotoById = (id: String) => {
   return fetch(`${url}/cities/${id}`, {
     method: "GET",
     headers: {
@@ -10,7 +12,7 @@ export const getPhotoById = (id) => {
   }).then((res) => res.json());
 };
 
-export const getPhotos = () => {
+export const getPhotos = (): Promise<PhotoEntity[]> => {
   return fetch(url, {
     method: "GET",
     headers: {

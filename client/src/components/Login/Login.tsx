@@ -23,8 +23,6 @@ const CssTextField = styled(TextField)({
 });
 
 export const Login = () => {
-  console.log("we are at login");
-
   const { setUser } = useContext(Context);
   const [formValues, handleInputChange] = useForm({
     username: "",
@@ -34,27 +32,9 @@ export const Login = () => {
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
-    /*fetch(`http://localhost/api/users/auth`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        username: formValues.username,
-        password: formValues.password,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setUser(data.user);
-        navigate("/");
-      })
-      .catch((error) => console.error("Error fetching data: ", error));*/
-
     getUser(formValues)
       .then((data) => {
-        setUser(data.user);
+        setUser(data.username);
         navigate("/");
       })
       .catch((error) => console.error("Error fetching data: ", error));

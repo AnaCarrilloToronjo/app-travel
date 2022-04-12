@@ -10,14 +10,11 @@ import {
   uploadPhoto,
   deletePhoto,
 } from "../../services/photos";
-
-interface IPhoto {
-  photoId: string;
-}
+import { PhotoEntity } from "../../model";
 
 export const Photos = (props) => {
   const { id } = props;
-  const [photosIDs, setPhotosIDs] = useState<IPhoto[]>([]);
+  const [photosIDs, setPhotosIDs] = useState<PhotoEntity[]>([]);
   const [showMenu, setShowMenu] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 

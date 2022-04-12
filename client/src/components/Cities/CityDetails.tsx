@@ -3,11 +3,6 @@ import { useParams } from "react-router-dom";
 import { Photos } from "../Photos/Photos";
 import { getPlaceById } from "../../services/places";
 
-interface IPlace {
-  _id: string;
-  city: string;
-}
-
 export const CityDetails = () => {
   const [place, setPlace] = useState({ city: "" });
   const { id } = useParams();
