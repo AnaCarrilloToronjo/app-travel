@@ -1,12 +1,16 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import { Context } from "../context/context.provider";
+import { getSessionCookie } from "./../session";
 
 export const RequireAuth = () => {
-  const { user } = useContext(Context);
+  const { setUser } = useContext(Context);
+  const [session, setSession] = useState(getSessionCookie());
 
-  if (!user) {
-    return <Navigate to="/login" />;
+  if (!session) {
+    return <Navigate to="/web/login" />;
+  } else {
+    setUser(session);
   }
   return <Outlet />;
 };

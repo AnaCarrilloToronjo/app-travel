@@ -5,9 +5,9 @@ export const App = () => {
   const [state, setState] = useState({ apiResponse: "" });
 
   useEffect(() => {
-    fetch("http://localhost:9000/stored")
-      .then(res => res.text())
-      .then(res => setState({ apiResponse: res }));
+    fetch("http://localhost/api/stored")
+      .then((res) => res.text())
+      .then((res) => setState({ apiResponse: res }));
   }, []);
 
   return (

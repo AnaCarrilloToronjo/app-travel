@@ -6,7 +6,6 @@ import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
 import { Context } from "../../context/context.provider";
 import { setPlace } from "../../services/places";
-import { PlacesEntity } from "../../model";
 
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
@@ -35,8 +34,7 @@ export const NewCity = () => {
   const handleSubmit = (e) => {
     if (formValues.city) {
       setPlace(formValues).then((data) => console.log(data));
-
-      navigate("/");
+      navigate("/web");
     }
     e.target.reset();
     e.preventDefault();

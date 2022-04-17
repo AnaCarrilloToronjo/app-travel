@@ -10,6 +10,7 @@ import IconButton from "@mui/material/IconButton";
 import Avatar from "@mui/material/Avatar";
 import PhotoIcon from "@mui/icons-material/Photo";
 import { getPlaces, deletePlace } from "../../services/places";
+import { url } from "../../services/photos";
 
 export const City = () => {
   const navigate = useNavigate();
@@ -49,7 +50,7 @@ export const City = () => {
                     <Delete onClick={() => handleDelete(places._id)} />
                   </IconButton>
                   <IconButton>
-                    <Edit onClick={() => navigate(`/${places._id}`)} />
+                    <Edit onClick={() => navigate(`/web/${places._id}`)} />
                   </IconButton>
                 </div>
               }
@@ -57,7 +58,7 @@ export const City = () => {
               <ListItemButton onClick={() => handleClick(places.city)}>
                 <Avatar
                   className="city_photo"
-                  src={`http://localhost:9000/photos/${places.photo}.png`}
+                  src={`${url}/${places.photo}.png`}
                 >
                   <PhotoIcon className="city_photo-icon" />
                 </Avatar>
@@ -84,7 +85,7 @@ export const City = () => {
         <button
           type="button"
           className="city__button"
-          onClick={() => navigate("/newCity")}
+          onClick={() => navigate("/web/newCity")}
         >
           +
         </button>

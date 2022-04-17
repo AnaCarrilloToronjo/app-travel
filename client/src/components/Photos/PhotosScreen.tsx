@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Navbar } from "../Navbar/Navbar";
-import { getPhotos } from "../../services/photos";
+import { url, getPhotos } from "../../services/photos";
 import { PhotoEntity } from "../../model";
 
 export const PhotosScreen = () => {
@@ -20,11 +20,7 @@ export const PhotosScreen = () => {
       <div className="photos_container">
         {photosIDs.map((photoID) => (
           <div>
-            <img
-              src={`http://localhost:9000/photos/${photoID}.png`}
-              height={500}
-              width={500}
-            />
+            <img src={`${url}/${photoID}.png`} height={500} width={500} />
           </div>
         ))}
       </div>

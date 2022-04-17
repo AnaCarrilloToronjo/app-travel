@@ -3,12 +3,8 @@ var router = express.Router();
 
 const Place = require("../model/modelPlaces");
 
-//router.get("/", function(req, res, next) {
-//  res.send("API is working properly");
-//});
-
 router.get("/", async (req, res) => {
-  const places = await Place.find();
+  const places = await Place.find({user: req.cookies.session});
   res.json(places);
 });
 

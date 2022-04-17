@@ -34,7 +34,7 @@ export const Register = () => {
 
       e.preventDefault();
       e.target.reset();
-      navigate("/");
+      navigate("/web");
     }
   };
   return (

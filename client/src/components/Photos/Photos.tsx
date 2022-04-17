@@ -5,11 +5,12 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import ImageIcon from "@mui/icons-material/Image";
 import Tooltip from "@mui/material/Tooltip";
 import {
+  url,
   getPhotoById,
-  putPhoto,
   uploadPhoto,
   deletePhoto,
 } from "../../services/photos";
+import { putPhoto } from "../../services/places";
 import { PhotoEntity } from "../../model";
 
 export const Photos = (props) => {
@@ -65,7 +66,7 @@ export const Photos = (props) => {
       <div className="photos_container">
         {photosIDs.map((photoID) => (
           <div key={photoID.photoId} id="photo-div">
-            <img src={`http://localhost:9000/photos/${photoID.photoId}.png`} />
+            <img src={`${url}/${photoID.photoId}.png`} />
 
             {showMenu && (
               <div>

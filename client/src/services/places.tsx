@@ -40,3 +40,13 @@ export const deletePlace = (id: string) => {
     },
   });
 };
+
+export const putPhoto = (id, PhotoId) => {
+  return fetch(`${url}/${id}`, {
+    method: "PUT",
+    body: JSON.stringify({ photo: PhotoId }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then((res) => res.json());
+};

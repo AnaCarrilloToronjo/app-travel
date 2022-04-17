@@ -31,14 +31,11 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 
 const jwtMiddleware = function(req, res, next){
-  cookie = res.cookie('title', 'GeeksforGeeksaa');
-  console.log("hola estamos en el middleware")
-  res.send("Cookie Set");
+  cookie = res.cookie('session', req.body.username, {expire : new Date() + 14});
+  next();
 }
-
-//app.use("/", jwtMiddleware);
  
-app.use("/users", usersRouter);
+app.use("/users", jwtMiddleware, usersRouter);
 
 app.use("/stored", APIRouter);
 

@@ -23,7 +23,7 @@ const CssTextField = styled(TextField)({
 });
 
 export const Login = () => {
-  const { setUser } = useContext(Context);
+  const { user, setUser } = useContext(Context);
   const [formValues, handleInputChange] = useForm({
     username: "",
     password: "",
@@ -34,8 +34,7 @@ export const Login = () => {
   const handleSubmit = (e) => {
     getUser(formValues)
       .then((data) => {
-        setUser(data.username);
-        navigate("/");
+        navigate("/web");
       })
       .catch((error) => console.error("Error fetching data: ", error));
 

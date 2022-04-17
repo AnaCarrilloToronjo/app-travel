@@ -1,6 +1,6 @@
 import { PhotosEntity, PhotoEntity } from "../model";
 
-const url = "http://localhost/api/photos";
+export const url = "http://localhost/api/photos";
 
 export const getPhotoById = (id: String) => {
   return fetch(`${url}/cities/${id}`, {
@@ -18,16 +18,6 @@ export const getPhotos = (): Promise<PhotoEntity[]> => {
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
-    },
-  }).then((res) => res.json());
-};
-
-export const putPhoto = (id, PhotoId) => {
-  return fetch(`${url}/${id}`, {
-    method: "PUT",
-    body: JSON.stringify({ photo: PhotoId }),
-    headers: {
-      "Content-Type": "application/json",
     },
   }).then((res) => res.json());
 };
