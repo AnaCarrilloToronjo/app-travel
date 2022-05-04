@@ -2,15 +2,10 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Context } from "../../context/context.provider";
-import Cookies from "js-cookie";
+import { logout } from "../../services/users";
 
 export const Navbar = () => {
-  const { user, setUser } = useContext(Context);
-
-  const handleLogout = () => {
-    setUser("");
-    Cookies.remove("session");
-  };
+  const { user } = useContext(Context);
   return (
     <div className="navbar_container">
       <ul>
@@ -24,7 +19,7 @@ export const Navbar = () => {
       <div className="navbar_user">
         <AccountCircleIcon />
         <label>{user}</label>
-        <Link onClick={handleLogout} to="/web">
+        <Link onClick={() => logout()} to="/web/login">
           Logout
         </Link>
       </div>

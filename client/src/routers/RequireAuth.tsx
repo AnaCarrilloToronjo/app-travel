@@ -7,7 +7,7 @@ export const RequireAuth = () => {
   const { setUser } = useContext(Context);
   const [session, setSession] = useState(getSessionCookie());
 
-  if (!session) {
+  if (Object.keys(session).length === 0) {
     return <Navigate to="/web/login" />;
   } else {
     setUser(session);

@@ -10,19 +10,16 @@
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  overflow: auto;
 }
 
 .city_main-container {
   display: flex;
   flex-direction: column;
-  align-self: center;
   flex-grow: 1;
   width: 100%;
-  height: 100%;
-
   padding: 20px;
-  overflow: scroll;
 
   .city_content {
     margin-bottom: 1rem;

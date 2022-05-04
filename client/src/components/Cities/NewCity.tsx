@@ -33,8 +33,10 @@ export const NewCity = () => {
 
   const handleSubmit = (e) => {
     if (formValues.city) {
-      setPlace(formValues).then((data) => console.log(data));
-      navigate("/web");
+      setPlace(formValues).then((data) => {
+        console.log(data);
+        navigate("/web");
+      });
     }
     e.target.reset();
     e.preventDefault();
@@ -49,6 +51,9 @@ export const NewCity = () => {
             name="city"
             id="input"
             label="Where did you go?"
+            autoComplete="off"
+            aria-autocomplete="list"
+            aria-controls="react-autowhatever-scrollable-container-example"
             variant="standard"
             onChange={handleInputChange}
           />
