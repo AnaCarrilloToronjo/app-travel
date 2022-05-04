@@ -12,7 +12,6 @@ router.get("/", (req, resp) => {
       resp.send(`error: ${err}`);
     } else {
       let photos_id = result.map(function(x) {
-        console.log(x._id);
         return x._id;
       });
       resp.send(photos_id);

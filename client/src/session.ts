@@ -8,7 +8,6 @@ export const setSessionCookie = (session: any): void => {
 
 export const getSessionCookie: any = () => {
   const sessionCookie = Cookies.get("session");
-  console.log(sessionCookie);
   if (sessionCookie === undefined) {
     return {};
   } else {

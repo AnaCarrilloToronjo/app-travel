@@ -13,7 +13,18 @@ export const getUser = (formValues): Promise<UserEntity> => {
       username: formValues.username,
       password: formValues.password,
     }),
-  }).then((res) => res.json());
+  }).then((res) => {
+    if (res.ok) {
+      return res.json();
+    }
+
+    switch (res.status) {
+      case 401:
+        throw new Error("Invalid login credentials");
+      default:
+        throw new Error(`Unknown server error occured: ${res.statusText}`);
+    }
+  });
 };
 
 export const setUser = (formValues): Promise<UserEntity> => {
@@ -24,4 +35,8 @@ export const setUser = (formValues): Promise<UserEntity> => {
       "Content-Type": "application/json",
     },
   }).then((res) => res.json());
+};
+
+export const logout = () => {
+  return fetch(`${url}/logout`).then();
 };

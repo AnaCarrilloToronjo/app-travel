@@ -1,5 +1,3 @@
-//import { jwtMiddleware } from "./security/security.middlewares";
-
 var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
@@ -9,7 +7,7 @@ var cors = require("cors");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/usersRouter");
-var APIRouter = require("./routes/APIRouter");
+var placesRouter = require("./routes/placesRouter");
 var photosRouter = require("./routes/PhotosRouter");
 
 const { mongoose } = require("./database/database");
@@ -30,15 +28,15 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 
-const jwtMiddleware = function(req, res, next){
+/*const jwtMiddleware = function(req, res, next){
   cookie = res.cookie('session', req.body.username, {expire : new Date() + 14});
   next();
-}
+}*/
  
-app.use("/users", jwtMiddleware, usersRouter);
+//app.use("/users", jwtMiddleware, usersRouter);
 
-app.use("/stored", APIRouter);
-
+app.use("/users", usersRouter);
+app.use("/stored", placesRouter);
 app.use("/photos", photosRouter);
 
 // error handler

@@ -15,14 +15,14 @@ export const AppRouter = () => {
       <BrowserRouter>
         <ContextProvider>
           <Routes>
-            <Route path="/web/login" element={<Login />} />
-            <Route path="/web/Register" element={<Register />} />
             <Route element={<RequireAuth />}>
               <Route path="/web" element={<CityScreen />} />
               <Route path="/web/:id" element={<DetailsScreen />} />
               <Route path="/web/NewCity" element={<NewCity />} />
               <Route path="/web/Photos" element={<PhotosScreen />} />
             </Route>
+            <Route path="/web/login" element={<Login />} />
+            <Route path="/web/Register" element={<Register />} />
           </Routes>
         </ContextProvider>
       </BrowserRouter>
