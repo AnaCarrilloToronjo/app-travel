@@ -2,14 +2,24 @@ var express = require("express");
 var router = express.Router();
 
 const Place = require("../model/modelPlaces");
+const ObjectId = require("mongoose").Types.ObjectId;
 
 router.get("/", async (req, res) => {
-  const places = await Place.find({user: req.cookies.session});
+  const places = await Place.find({ user: req.cookies.session });
   res.json(places);
 });
 
 router.get("/:id", async (req, res) => {
+  if (!ObjectId.isValid(req.params.id)) {
+    res.sendStatus(400);
+    return;
+  }
+
   const place = await Place.findById(req.params.id);
+  if (!place) {
+    res.sendStatus(404);
+    return;
+  }
   res.json(place);
 });
 

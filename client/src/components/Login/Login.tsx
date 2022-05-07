@@ -73,7 +73,7 @@ export const Login = () => {
         <Button type="submit" id="button">
           Sign in
         </Button>
-        <Link to="/Register">Create account</Link>
+        <Link to="/web/Register">Create account</Link>
       </div>
     </form>
   );
