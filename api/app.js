@@ -8,7 +8,7 @@ var cors = require("cors");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/usersRouter");
 var placesRouter = require("./routes/placesRouter");
-var photosRouter = require("./routes/PhotosRouter");
+var photosRouter = require("./routes/photosRouter");
 
 const { mongoose } = require("./database/database");
 
@@ -32,7 +32,7 @@ app.use("/", indexRouter);
   cookie = res.cookie('session', req.body.username, {expire : new Date() + 14});
   next();
 }*/
- 
+
 //app.use("/users", jwtMiddleware, usersRouter);
 
 app.use("/users", usersRouter);

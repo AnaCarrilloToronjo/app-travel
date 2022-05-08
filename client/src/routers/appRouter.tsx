@@ -4,7 +4,7 @@ import { NewCity } from "../components/Cities/NewCity";
 import { CityScreen } from "../components/Cities/CityScreen";
 import { PhotosScreen } from "../components/Photos/PhotosScreen";
 import { DetailsScreen } from "../components/Cities/DetailsScreen";
-import { Login } from "../components/Login/login";
+import { Login } from "../components/Login/Login";
 import { Register } from "../components/Login/Register";
 import { ContextProvider } from "../context/context.provider";
 import { RequireAuth } from "./RequireAuth";
