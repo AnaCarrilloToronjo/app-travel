@@ -6,7 +6,9 @@ const ObjectId = require("mongoose").Types.ObjectId;
 
 router.get("/", async (req, res) => {
   const places = await Place.find({ user: req.cookies.session });
-  res.json(places);
+  if (places?.length > 0) {
+    res.json(places);
+  }
 });
 
 router.get("/:id", async (req, res) => {

@@ -1,51 +1,34 @@
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const path = require("path");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const { merge } = require("webpack-merge");
+const common = require("./webpack.common.js");
 const Dotenv = require("dotenv-webpack");
 
-module.exports = {
-  context: path.resolve(__dirname, "src"),
-  resolve: {
-    extensions: [".js", ".ts", ".tsx"],
-  },
-  entry: {
-    app: "./index.tsx",
-  },
-  output: {
-    filename: "[name].[chunkhash].js",
-    path: path.resolve(__dirname, "dist"),
-  },
+module.exports = merge(common, {
+  mode: "production",
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        exclude: /node_modules/,
-        loader: "babel-loader",
-      },
-      {
         test: /\.scss$/,
-        exclude: /node_modules/,
-        use: ["style-loader", "css-loader", "sass-loader"],
-      },
-      {
-        test: /\.(png|jpg)$/,
-        type: "asset/resource",
+        exclude: /node_module/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: "css-loader",
+            options: {
+              modules: {
+                exportLocalsConvention: "camelCase",
+              },
+            },
+          },
+          "sass-loader",
+        ],
       },
     ],
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: "./index.html",
-      filename: "index.html",
-      scriptLoading: "blocking",
+    new MiniCssExtractPlugin({
+      filename: "[name].[chunkhash].styles.css",
     }),
-
-    new CleanWebpackPlugin(),
-    new Dotenv({
-      path: "./prod.env",
-    }),
+    new Dotenv({ path: "./prod.env" }),
   ],
-  devServer: {
-    historyApiFallback: true,
-  },
-};
+});

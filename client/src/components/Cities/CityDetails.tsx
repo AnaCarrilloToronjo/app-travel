@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Photos } from "../Photos/Photos";
 import { getPlaceById } from "../../services/places";
 
 export const CityDetails = () => {
   const [place, setPlace] = useState({ city: "" });
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     getPlaceById(id)
       .then((data) => {
         setPlace(data);
       })
-      .catch((error) => console.error("Error fetching data: ", error));
+      .catch((error) => navigate("/web"));
   }, [setPlace]);
 
   return (

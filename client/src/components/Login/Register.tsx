@@ -30,7 +30,7 @@ export const Register = () => {
 
   const handleSubmit = (e) => {
     if (formValues.password === formValues.confirmPassword) {
-      setUser(formValues).then((data) => console.log(data));
+      setUser(formValues);
 
       e.preventDefault();
       e.target.reset();

@@ -7,11 +7,11 @@ const multer = require("multer");
 const upload = multer();
 
 router.get("/", (req, resp) => {
-  modelPhoto.find({}, function(err, result) {
+  modelPhoto.find({}, function (err, result) {
     if (err) {
       resp.send(`error: ${err}`);
     } else {
-      let photos_id = result.map(function(x) {
+      let photos_id = result.map(function (x) {
         return x._id;
       });
       resp.send(photos_id);
@@ -20,12 +20,11 @@ router.get("/", (req, resp) => {
 });
 
 router.get("/cities/:id", (req, resp) => {
-  modelPhoto.find({ place_id: req.params.id }, function(err, result) {
+  modelPhoto.find({ place_id: req.params.id }, function (err, result) {
     if (err) {
       resp.send(`error: ${err}`);
     } else {
-      let photos_id = result.map(function(x) {
-        console.log(x._id);
+      let photos_id = result.map(function (x) {
         return x._id;
       });
       resp.send(photos_id);
@@ -34,7 +33,7 @@ router.get("/cities/:id", (req, resp) => {
 });
 
 router.get("/:id.png", (req, resp) => {
-  modelPhoto.findById(req.params.id, function(err, result) {
+  modelPhoto.findById(req.params.id, function (err, result) {
     if (err) {
       resp.send(`error: ${err}`);
     } else {
