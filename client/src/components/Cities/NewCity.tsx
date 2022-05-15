@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useForm } from "../../hooks/useForm";
 import { useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
@@ -6,6 +6,8 @@ import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
 import { Context } from "../../context/context.provider";
 import { setPlace } from "../../services/places";
+import { MapBox } from "../Map/MapBox";
+import { useDebounce } from "../../hooks/useDebounce";
 
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
@@ -21,6 +23,9 @@ const CssTextField = styled(TextField)({
 
 export const NewCity = () => {
   const { user } = useContext(Context);
+  const [inputValue, setInputValue] = useState("");
+  const debounceValue = useDebounce(inputValue);
+  const [inputSelect, setInputSelect] = useState([]);
 
   const [formValues, handleInputChange] = useForm({
     city: "",
@@ -29,14 +34,19 @@ export const NewCity = () => {
     user: user,
   });
 
+  useEffect(() => {
+    MapBox(debounceValue)
+      .then
+      //(geoCodeLocation) => setInputSelect(geoCodeLocation.results)
+      //console.log("geoCodeLocation", geoCodeLocation.results)
+      ();
+  }, [debounceValue]);
+
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     if (formValues.city) {
-      setPlace(formValues).then((data) => {
-        console.log(data);
-        navigate("/web");
-      });
+      setPlace(formValues).then((data) => navigate("/web"));
     }
     e.target.reset();
     e.preventDefault();
@@ -46,6 +56,7 @@ export const NewCity = () => {
       <form className="newCity_form" onSubmit={handleSubmit}>
         <div className="newCity_content">
           <h3>New travel</h3>
+
           <CssTextField
             type="text"
             name="city"
@@ -55,8 +66,10 @@ export const NewCity = () => {
             aria-autocomplete="list"
             aria-controls="react-autowhatever-scrollable-container-example"
             variant="standard"
-            onChange={handleInputChange}
+            onChange={(e) => setInputValue(e.target.value)}
+            //onChange={handleInputChange}
           />
+
           <div className="newCity_container-date">
             <CssTextField
               type="date"
