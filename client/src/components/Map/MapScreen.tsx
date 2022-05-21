@@ -34,7 +34,8 @@ export const MapScreen = (props) => {
       scrollWheelZoom={false}
     >
       {/*cityName && <Geocoder address={cityName} />*/}
-      <TileLayer url="https://tiles.stadiamaps.com/tiles/outdoors/{z}/{x}/{y}{r}.png" />
+      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+      {/*"https://tiles.stadiamaps.com/tiles/outdoors/{z}/{x}/{y}{r}.png" />*/}
       {/*<Marker position={position} icon={MarkerIcon}></Marker>*/}
 
       {placeName.map((name) => (
