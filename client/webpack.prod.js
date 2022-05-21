@@ -13,25 +13,27 @@ module.exports = merge(common, {
         test: /\.scss$/,
         exclude: /node_module/,
         use: ["style-loader", "css-loader", "sass-loader"],
-        /* use: [
+        /*use: [
           MiniCssExtractPlugin.loader,
+          "css-loader",
           {
-            loader: "css-loader",
+            loader: "sass-loader",
             options: {
-              modules: {
-                exportLocalsConvention: "camelCase",
-              },
+              implementation: require("sass"),
             },
           },
-          "sass-loader",
         ],*/
       },
     ],
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "[name].[chunkhash].styles.css",
+      filename: "[name].css",
+      chunkFilename: "[id].css",
     }),
     new Dotenv({ path: "./prod.env" }),
   ],
+  /*devServer: {
+    historyApiFallback: true,
+  },*/
 });
