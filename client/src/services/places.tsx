@@ -1,6 +1,6 @@
 import { PlacesEntity } from "../model";
 
-const url = `http://${process.env.API_BASE}/api/store`;
+const url = `http://${process.env.API_BASE}/api/stored`;
 
 export const getPlaces = (): Promise<PlacesEntity[]> => {
   return fetch(url, {

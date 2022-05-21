@@ -3,6 +3,8 @@ const { merge } = require("webpack-merge");
 const common = require("./webpack.common.js");
 const Dotenv = require("dotenv-webpack");
 
+const path = require("path");
+
 module.exports = merge(common, {
   mode: "production",
   module: {
@@ -10,25 +12,28 @@ module.exports = merge(common, {
       {
         test: /\.scss$/,
         exclude: /node_module/,
-        use: [
+        use: ["style-loader", "css-loader", "sass-loader"],
+        /*use: [
           MiniCssExtractPlugin.loader,
+          "css-loader",
           {
-            loader: "css-loader",
+            loader: "sass-loader",
             options: {
-              modules: {
-                exportLocalsConvention: "camelCase",
-              },
+              implementation: require("sass"),
             },
           },
-          "sass-loader",
-        ],
+        ],*/
       },
     ],
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "[name].[chunkhash].styles.css",
+      filename: "[name].css",
+      chunkFilename: "[id].css",
     }),
     new Dotenv({ path: "./prod.env" }),
   ],
+  /*devServer: {
+    historyApiFallback: true,
+  },*/
 });
