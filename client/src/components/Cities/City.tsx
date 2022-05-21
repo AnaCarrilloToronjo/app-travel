@@ -42,6 +42,7 @@ export const City = () => {
         <div className="city_content">
           {place.map((places) => (
             <ListItem
+              onClick={() => navigate(`/web/${places._id}`)}
               key={places._id}
               className="city__card"
               secondaryAction={
@@ -49,9 +50,9 @@ export const City = () => {
                   <IconButton>
                     <Delete onClick={() => handleDelete(places._id)} />
                   </IconButton>
-                  <IconButton>
+                  {/* <IconButton>
                     <Edit onClick={() => navigate(`/web/${places._id}`)} />
-                  </IconButton>
+              </IconButton> */}
                 </div>
               }
             >
@@ -67,13 +68,13 @@ export const City = () => {
                   <div className="city_card-date">
                     {places.fromDate && (
                       <span>
-                        {Moment(`${places.fromDate}`).format("Do MMMM YY")}
+                        {Moment(`${places.fromDate}`).format("MMM D, YYYY")}
                       </span>
                     )}
                     {places.toDate && (
                       <span>
                         &nbsp;-&nbsp;
-                        {Moment(`${places.toDate}`).format("Do MMMM YY")}
+                        {Moment(`${places.toDate}`).format("MMM D, YYYY")}
                       </span>
                     )}
                   </div>

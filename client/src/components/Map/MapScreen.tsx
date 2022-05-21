@@ -28,7 +28,8 @@ export const MapScreen = (props) => {
   const { cityName } = props;
   return (
     <MapContainer
-      style={{ width: "100vw", height: "auto" }}
+      className="map_container"
+      //style={{ width: "100vw", height: "auto" }}
       center={position}
       zoom={5}
       scrollWheelZoom={false}

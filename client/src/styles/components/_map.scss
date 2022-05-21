@@ -1,0 +1,10 @@
+
+ .map_container{
+    width: 100vw;
+    height: auto;
+}
+@media only screen and (max-width: 860px) {
+    .map_container{
+        width: 0px;
+    }
+}
