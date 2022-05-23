@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 
 const Place = require("../model/modelPlaces");
+const modelPhoto = require("../model/modelPhotos");
 const ObjectId = require("mongoose").Types.ObjectId;
 
 router.get("/", async (req, res) => {
@@ -33,6 +34,9 @@ router.post("/", async (req, res) => {
 
 router.delete("/:id", async (req, res) => {
   await Place.findByIdAndDelete(req.params.id);
+
+  //Delete photos too
+  await modelPhoto.deleteMany({ place_id: req.params.id });
 });
 
 router.put("/:id", async (req, res) => {
