@@ -28,7 +28,9 @@ export const City = () => {
     setIsLoading(false);
   }, [isLoading]);
 
-  const handleDelete = (id) => {
+  const handleDelete = (e, id) => {
+    e.stopPropagation();
+    e.preventDefault();
     deletePlace(id);
     setIsLoading(true);
   };
@@ -42,18 +44,13 @@ export const City = () => {
         <div className="city_content">
           {place.map((places) => (
             <ListItem
-              onClick={() => navigate(`/web/${places._id}`)}
+              onClick={(e) => navigate(`/web/${places._id}`)}
               key={places._id}
               className="city__card"
               secondaryAction={
-                <div>
-                  <IconButton>
-                    <Delete onClick={() => handleDelete(places._id)} />
-                  </IconButton>
-                  {/* <IconButton>
-                    <Edit onClick={() => navigate(`/web/${places._id}`)} />
-              </IconButton> */}
-                </div>
+                <IconButton edge="end" aria-label="delete">
+                  <Delete onClick={(e) => handleDelete(e, places._id)} />
+                </IconButton>
               }
             >
               <ListItemButton onClick={() => handleClick(places.city)}>
