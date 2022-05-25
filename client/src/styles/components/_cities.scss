@@ -26,21 +26,17 @@
     padding: 10px;
     flex-grow: 1;
     overflow: scroll;
-  
   }
 
   .city__card {
-    padding: 10px;
-    border: 1px solid #511845;
+    border: 1px solid gray;
+    padding: 0px;
+    margin-top:5px;
     background-color: white;
 
     .city_photo {
-      width: 80px;
-      height: 80px;
-
-      .city_photo-icon {
-        width: 150px;
-      }
+      width: 60px;
+      height: 60px;
     }
     .city__card-content {
       padding: 10px;

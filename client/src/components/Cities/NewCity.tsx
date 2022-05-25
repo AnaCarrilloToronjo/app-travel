@@ -1,8 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "../../hooks/useForm";
 import { useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { styled } from "@mui/material/styles";
 import { Context } from "../../context/context.provider";
 import { setPlace } from "../../services/places";
@@ -14,24 +17,27 @@ const CssTextField = styled(TextField)({
   "& .MuiInput-underline:after": {
     borderBottomColor: "#c70039",
   },
-  "input:-webkit-autofill": {
-    "-webkit-box-shadow": "0 0 0 100px #f5f3f4 inset",
-  },
 });
 
 export const NewCity = () => {
   const { user } = useContext(Context);
 
   const [formValues, handleInputChange] = useForm({
-    city: "",
-    fromDate: "",
-    toDate: "",
+    city: null,
+    fromDate: null,
+    toDate: null,
     user: user,
   });
+
+  const [selectedFromDate, setSelectedFromDate] = useState<Date | null>(null);
+  const [selectedToDate, setSelectedToDate] = useState<Date | null>(null);
 
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
+    formValues.fromDate = selectedFromDate;
+    formValues.toDate = selectedToDate;
+
     if (formValues.city) {
       setPlace(formValues).then((data) => {
         console.log(data);
@@ -58,22 +64,41 @@ export const NewCity = () => {
             onChange={handleInputChange}
           />
           <div className="newCity_container-date">
-            <CssTextField
-              type="date"
-              name="fromDate"
-              id="date"
-              variant="standard"
-              label="Start date"
-              onChange={handleInputChange}
-            />
-            <CssTextField
-              type="date"
-              name="toDate"
-              id="date"
-              variant="standard"
-              label="End date"
-              onChange={handleInputChange}
-            />
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <DatePicker
+                label="Start date"
+                value={selectedFromDate}
+                onChange={setSelectedFromDate}
+                inputFormat="dd/MM/yyyy"
+                renderInput={(params) => (
+                  <CssTextField
+                    {...params}
+                    id="date"
+                    type="date"
+                    name="fromDate"
+                    margin="normal"
+                    variant="standard"
+                    autoComplete="off"
+                  />
+                )}
+              />
+              <DatePicker
+                label="End date"
+                value={selectedToDate}
+                inputFormat="dd/MM/yyyy"
+                onChange={setSelectedToDate}
+                renderInput={(params) => (
+                  <CssTextField
+                    {...params}
+                    id="date"
+                    name="toDate"
+                    margin="normal"
+                    variant="standard"
+                    autoComplete="off"
+                  />
+                )}
+              />
+            </LocalizationProvider>
           </div>
         </div>
         <Button type="submit" id="button">

@@ -3,7 +3,6 @@ import Moment from "moment";
 import { useNavigate } from "react-router-dom";
 import { MapScreen } from "../Map/MapScreen";
 import Delete from "@mui/icons-material/Delete";
-import Edit from "@mui/icons-material/Edit";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import IconButton from "@mui/material/IconButton";
@@ -58,7 +57,7 @@ export const City = () => {
                   className="city_photo"
                   src={`${url}/${places.photo}.png`}
                 >
-                  <PhotoIcon className="city_photo-icon" />
+                  <PhotoIcon />
                 </Avatar>
                 <div className="city__card-content">
                   <div>{places.city}</div>

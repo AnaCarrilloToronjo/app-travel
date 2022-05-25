@@ -10,7 +10,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 500px;
+  width: 450px;
   height: 500px;
   padding: 50px;
   border-radius: 2.5%;
@@ -24,26 +24,14 @@
   .newCity_content {
     display: flex;
     flex-direction: column;
+
     .newCity_container-date {
       display: flex;
       justify-content: space-between;
       margin-top: 5%;
-
-      #input {
-        color: "gray";
-      }
-      input[type="date"]:in-range::-webkit-datetime-edit-year-field,
-      input[type="date"]:in-range::-webkit-datetime-edit-month-field,
-      input[type="date"]:in-range::-webkit-datetime-edit-day-field,
-      input[type="date"]:in-range::-webkit-datetime-edit-text {
-        color: transparent;
-      }
-
-      #date {
-        &:focus {
-          color: black;
-        }
-      }
+    }
+    #date{
+      width: 120px;
     }
   }
   #button {

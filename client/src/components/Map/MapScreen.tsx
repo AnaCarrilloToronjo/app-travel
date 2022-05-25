@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
+import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import { Geocoder } from "./Geocoder";
 import leaflet from "leaflet";
 import icon from "leaflet/dist/images/marker-icon.png";
@@ -29,7 +29,6 @@ export const MapScreen = (props) => {
   return (
     <MapContainer
       className="map_container"
-      //style={{ width: "100vw", height: "auto" }}
       center={position}
       zoom={5}
       scrollWheelZoom={false}

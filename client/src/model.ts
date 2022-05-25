@@ -1,4 +1,4 @@
-export interface PlacesEntity {
+export interface PlaceEntity {
   city: string;
   fromDate: Date;
   toDate: Date;
