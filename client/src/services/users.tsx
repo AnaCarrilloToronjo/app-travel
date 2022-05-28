@@ -1,6 +1,6 @@
 import { UserEntity } from "../model";
 
-const url = `http://${process.env.API_BASE}/api/users`; //"http://localhost/api/users";
+const url = `${process.env.API_BASE}/api/users`;
 
 export const getUser = (formValues): Promise<UserEntity> => {
   return fetch(`${url}/auth`, {

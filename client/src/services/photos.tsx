@@ -1,6 +1,6 @@
 import { PhotosEntity, PhotoEntity } from "../model";
 
-export const url = `http://${process.env.API_BASE}/api/photos`;
+export const url = `${process.env.API_BASE}/api/photos`;
 
 export const getPhotoById = (id: String) => {
   return fetch(`${url}/cities/${id}`, {
