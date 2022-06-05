@@ -75,3 +75,23 @@
     color: lighten(black, 30%);
   }
 }
+
+@media only screen and (max-width: 557px) {
+  .photos_container {
+    img {
+      height: 90px;
+      width: 90px;
+      margin: 1px;
+    }
+  }
+  .photo-button {
+    height: 90px;
+    width: 90px;
+    margin: 1px;
+  
+    .photo-button-icon {
+      height: 40px;
+      width: 40px;
+    }
+  }
+}
