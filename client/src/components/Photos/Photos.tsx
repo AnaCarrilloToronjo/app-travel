@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import SettingsIcon from "@mui/icons-material/Settings";
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -19,6 +20,8 @@ export const Photos = (props) => {
   const [showMenu, setShowMenu] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     getPhotoById(id)
       .then((data) => {
@@ -27,13 +30,15 @@ export const Photos = (props) => {
         });
         setPhotosIDs(photos);
       })
-      .catch((error) => console.error("Error fetching data: ", error));
+      .catch(() => {
+        navigate("/web/login");
+      });
 
     setIsLoading(false);
   }, [isLoading]);
 
   const handleChangePhoto = (PhotoId) => {
-    putPhoto(id, PhotoId).then((data) => console.log(data));
+    putPhoto(id, PhotoId);
   };
 
   const handleClick = () => {
@@ -43,7 +48,7 @@ export const Photos = (props) => {
   const handleUploadPhoto = (e) => {
     let formData = new FormData();
     formData.append("photo", e.target.files[0]);
-    uploadPhoto(id, formData).then((data) => console.log(data));
+    uploadPhoto(id, formData);
 
     setIsLoading(true);
   };

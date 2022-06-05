@@ -40,8 +40,7 @@ export const NewCity = () => {
 
     if (formValues.city) {
       setPlace(formValues).then((data) => {
-        console.log(data);
-        navigate("/web");
+        navigate("/web/login");
       });
     }
     e.target.reset();

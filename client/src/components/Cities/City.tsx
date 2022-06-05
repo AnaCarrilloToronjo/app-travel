@@ -22,7 +22,9 @@ export const City = () => {
       .then((data) => {
         setPlace(data);
       })
-      .catch((error) => console.error("Error fetching data: ", error));
+      .catch(() => {
+        navigate("/web");
+      });
 
     setIsLoading(false);
   }, [isLoading]);

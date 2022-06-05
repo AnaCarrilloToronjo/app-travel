@@ -14,7 +14,9 @@ export const CityDetails = () => {
       .then((data) => {
         setPlace(data);
       })
-      .catch((error) => navigate("/web"));
+      .catch(() => {
+        navigate("/web/login");
+      });
   }, [setPlace]);
 
   return (

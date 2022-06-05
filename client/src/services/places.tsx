@@ -9,7 +9,12 @@ export const getPlaces = (): Promise<PlaceEntity[]> => {
       "Content-Type": "application/json",
       Accept: "application/json",
     },
-  }).then((res) => res.json());
+  }).then((res) => {
+    if (!res.ok) {
+      return new Error(`Unknown server error occured: ${res.statusText}`);
+    }
+    return res.json();
+  });
 };
 
 export const getPlaceById = (id: string): Promise<PlaceEntity> => {
@@ -18,7 +23,12 @@ export const getPlaceById = (id: string): Promise<PlaceEntity> => {
       "Content-Type": "application/json",
       Accept: "application/json",
     },
-  }).then((res) => res.json());
+  }).then((res) => {
+    if (!res.ok) {
+      return new Error(`Unknown server error occured: ${res.statusText}`);
+    }
+    return res.json();
+  });
 };
 
 export const setPlace = (formValues: PlaceEntity[]): Promise<PlaceEntity> => {
@@ -28,7 +38,12 @@ export const setPlace = (formValues: PlaceEntity[]): Promise<PlaceEntity> => {
     headers: {
       "Content-Type": "application/json",
     },
-  }).then((res) => res.json());
+  }).then((res) => {
+    if (!res.ok) {
+      return new Error(`Unknown server error occured: ${res.statusText}`);
+    }
+    return res.json();
+  });
 };
 
 export const deletePlace = (id: string) => {
@@ -48,5 +63,10 @@ export const putPhoto = (id, PhotoId) => {
     headers: {
       "Content-Type": "application/json",
     },
-  }).then((res) => res.json());
+  }).then((res) => {
+    if (!res.ok) {
+      return new Error(`Unknown server error occured: ${res.statusText}`);
+    }
+    return res.json();
+  });
 };

@@ -4,7 +4,6 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var cors = require("cors");
-
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/usersRouter");
 var placesRouter = require("./routes/placesRouter");
@@ -28,16 +27,17 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 
-/*const jwtMiddleware = function(req, res, next){
-  cookie = res.cookie('session', req.body.username, {expire : new Date() + 14});
-  next();
-}*/
-
-//app.use("/users", jwtMiddleware, usersRouter);
+const jwtMiddleware = function (req, res, next) {
+  if (req.cookies.session) {
+    next();
+  } else {
+    res.status(403).send(`Sorry but you are not logged in to this app`);
+  }
+};
 
 app.use("/users", usersRouter);
-app.use("/stored", placesRouter);
-app.use("/photos", photosRouter);
+app.use("/stored", jwtMiddleware, placesRouter);
+app.use("/photos", jwtMiddleware, photosRouter);
 
 // error handler
 app.use(function (err, req, res, next) {
